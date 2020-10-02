@@ -1,0 +1,24 @@
+将电脑的虚拟机配置为桥接，在控制面板\网络和 Internet\网络连接，设置安装VMware Bride protocal
+
+在虚拟机点击网络设置，增加一个profile，选择手动增加一个IPV4的地址
+
+br0：把两个频段的wifi和lan口连接起来
+et0：wan口
+wan0lan4321
+et6:5G
+et7：2.4G频段
+查看ip2.4G密码：nvram show | grep wl1_wpa_psk=
+查看5G密码：nvram show | grep wl0_wpa_psk=
+查看APServerIp在第3  nvram show | grep ntp_server=
+设置APServerIPnvram set ntp_server="192.5.41.40 192.5.41.41 192.168.0.106"
+
+提交配置  nvram commit
+
+wifi密码必须设置为8位
+查看wifi的配置：cat /data/.kernel_nvram.setting
+存在的问题，增加或者删除AP后，给AP的模板信息对应不上，导致每次增加AP后，AP的模板信息都是template = 0 的信息
+
+ap程序所在文件夹 ：：/program/apclien_8_24
+WS程序位置：/home/xlh/wTEST/webserver8_18/webserver_new_1
+AS程序位置：/home/xlh/APServer/APServer/apserver
+
